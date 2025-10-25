@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark light;
+}
+
+@theme inline {
+  --font-sans: var(--font-primary);
+  --font-alt: var(--font-secondary);
+  --color-primary: #7f5cff;
+  --color-secondary: #00d7ff;
+  --color-surface-dark: #0b0d12;
+  --color-surface-light: #f8f9fd;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+}
+
+html[data-theme="dark"] {
+  --background: #04050b;
+  --foreground: #f5f7ff;
+  --muted: rgba(132, 153, 214, 0.56);
+  --card: rgba(18, 22, 33, 0.92);
+  --border: rgba(127, 150, 218, 0.18);
+  --grid: rgba(81, 112, 200, 0.08);
+  --glow: rgba(127, 92, 255, 0.38);
+  background: radial-gradient(circle at 20% 20%, rgba(127, 92, 255, 0.18), transparent 45%),
+    radial-gradient(circle at 80% 0%, rgba(0, 214, 255, 0.18), transparent 45%),
+    #03040a;
+}
+
+html[data-theme="light"] {
+  --background: #f6f8ff;
+  --foreground: #0b1120;
+  --muted: rgba(78, 87, 120, 0.65);
+  --card: rgba(255, 255, 255, 0.86);
+  --border: rgba(25, 33, 72, 0.12);
+  --grid: rgba(25, 35, 68, 0.08);
+  --glow: rgba(90, 140, 255, 0.24);
+  background: radial-gradient(circle at 15% 15%, rgba(123, 92, 255, 0.14), transparent 46%),
+    radial-gradient(circle at 75% 5%, rgba(9, 176, 255, 0.12), transparent 45%),
+    #f4f7ff;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(127, 92, 255, 0.4) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgba(127, 92, 255, 0.35);
+  border-radius: 999px;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-primary), system-ui, -apple-system, sans-serif;
+  letter-spacing: 0.01em;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.04) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 120px 120px;
+  opacity: 0.22;
+  mask-image: radial-gradient(circle at center, black, transparent 70%);
+  z-index: 0;
+}
+
+.page-shell {
+  position: relative;
+  isolation: isolate;
+}
+
+.page-shell::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  filter: blur(120px);
+  opacity: 0.4;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse at 20% 20%, rgba(127, 92, 255, 0.34), transparent 52%),
+    radial-gradient(ellipse at 80% 0%, rgba(0, 195, 255, 0.28), transparent 52%);
+}
+
+main {
+  position: relative;
+  z-index: 1;
+}
